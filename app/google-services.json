@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "679636352165",
+    "firebase_url": "https://okaydemoandroid.firebaseio.com",
+    "project_id": "okaydemoandroid",
+    "storage_bucket": "okaydemoandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679636352165:android:c7ab4519cd17e82b0be14c",
+        "android_client_info": {
+          "package_name": "com.ogieben.okaydemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679636352165-0nbo2b5d4nadatlm8ajvkpa8guvr57b4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ogieben.okaydemo",
+            "certificate_hash": "884a17761b7e6ac4245bc98300b8129d83a69a2a"
+          }
+        },
+        {
+          "client_id": "679636352165-jcu44644ot9f5e7cnkdvlncv9sj91hs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG6t-Y1N5QoAas05TIZGYwP0jLCSNdBiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679636352165-jcu44644ot9f5e7cnkdvlncv9sj91hs3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
