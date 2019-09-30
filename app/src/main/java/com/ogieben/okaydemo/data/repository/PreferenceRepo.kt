@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 class PreferenceRepo(context: Context) {
 
     private val prefStorage: SharedPreferences =
-        context.getSharedPreferences("firebase_instance_id", Context.MODE_PRIVATE)
+        context.getSharedPreferences(PREFERENCE_KEY, Context.MODE_PRIVATE)
 
     fun persistAppPns(instanceId: String) {
 //        prefStorage ?: return with(prefStorage.edit()) {

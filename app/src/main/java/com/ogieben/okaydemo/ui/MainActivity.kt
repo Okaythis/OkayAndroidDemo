@@ -9,9 +9,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
+import com.itransition.protectoria.psa_multitenant.protocol.scenarios.linking.LinkingScenarioListener
+import com.itransition.protectoria.psa_multitenant.state.ApplicationState
 import com.ogieben.okaydemo.BuildConfig
 import com.ogieben.okaydemo.R
 import com.ogieben.okaydemo.data.repository.PreferenceRepo
+import com.ogieben.okaydemo.data.repository.SpaStorageManager
 import com.ogieben.okaydemo.utils.PermissionHelper
 import com.protectoria.psa.PsaManager
 import com.protectoria.psa.api.PsaConstants
@@ -37,12 +40,13 @@ class MainActivity : AppCompatActivity() {
         fetchInstanceId()
         fab.setOnClickListener { view ->
             beginEnrollment()
+//            linkUser("789900")
         }
     }
 
     private fun beginEnrollment() {
         val appPns = preferenceRepo.getAppPns()
-//        Toast.makeText(this@MainActivity, appPns + " " + BuildConfig.PUB_PSS_B64 + " " + BuildConfig.INSTALLATION_ID , Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity, appPns + " " + BuildConfig.SERVER_URL + " " + BuildConfig.INSTALLATION_ID, Toast.LENGTH_LONG).show()
         val spaEnroll = SpaEnrollData(appPns,
             BuildConfig.PUB_PSS_B64,
             BuildConfig.INSTALLATION_ID,
@@ -74,6 +78,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun linkUser(linkingCode: String) {
+        val psaManager = PsaManager.getInstance()
+        val listener: LinkingScenarioListener = object: LinkingScenarioListener{
+            override fun onLinkingCompletedSuccessful(var1: Long, var3: String){
+                Toast.makeText(this@MainActivity, "Linking Successful", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onLinkingFailed(var1: ApplicationState) {
+                Toast.makeText(this@MainActivity, "Linking not Successful", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        val _linkingCode = "405607"
+        psaManager.linkTenant(_linkingCode, SpaStorageManager(this), listener)
+    }
+
     private fun fetchInstanceId () {
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
@@ -92,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PsaConstants.ACTIVITY_REQUEST_CODE_PSA_ENROLL) {
             if (resultCode == RESULT_OK) {
-                //We should save data from Enrollment result, fo future usage
+                //We should save data from Enrollment result, for future usage
                 data?.run {
                     val resultData = PsaIntentUtils.enrollResultFromIntent(this)
                     resultData.let {
@@ -101,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,   "Successfully got this externalId " + resultData.externalId, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Error Retrieving intent after enrollment", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error Retrieving intent after enrollment: $resultCode", Toast.LENGTH_SHORT).show()
             }
         }
         // Here you can receive result of the authorization flow
