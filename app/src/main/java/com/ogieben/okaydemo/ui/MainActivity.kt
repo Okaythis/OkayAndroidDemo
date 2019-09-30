@@ -104,7 +104,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 val token = task.result?.token
                 preferenceRepo.persistAppPns(token.toString())
-//                Toast.makeText(this@MainActivity, token, Toast.LENGTH_LONG).show()
             })
     }
 
