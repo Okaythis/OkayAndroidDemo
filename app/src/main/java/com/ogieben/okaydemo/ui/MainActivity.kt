@@ -13,21 +13,32 @@ import com.itransition.protectoria.psa_multitenant.protocol.scenarios.linking.Li
 import com.itransition.protectoria.psa_multitenant.state.ApplicationState
 import com.ogieben.okaydemo.BuildConfig
 import com.ogieben.okaydemo.R
+import com.ogieben.okaydemo.data.model.LinkingStatus
+import com.ogieben.okaydemo.data.model.OkayLinking
 import com.ogieben.okaydemo.data.repository.PreferenceRepo
 import com.ogieben.okaydemo.data.repository.SpaStorageManager
+import com.ogieben.okaydemo.network.retrofit.RetrofitWrapper
+import com.ogieben.okaydemo.network.retrofit.TransactionEndpoints
 import com.ogieben.okaydemo.utils.PermissionHelper
 import com.protectoria.psa.PsaManager
 import com.protectoria.psa.api.PsaConstants
 import com.protectoria.psa.api.converters.PsaIntentUtils
 import com.protectoria.psa.api.entities.SpaEnrollData
 import com.protectoria.psa.dex.common.data.enums.PsaType
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.plugins.RxJavaPlugins.onError
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var preferenceRepo: PreferenceRepo
     private val permissionHelper = PermissionHelper(this)
+    private val retrofitWrapper = RetrofitWrapper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +49,37 @@ class MainActivity : AppCompatActivity() {
 
         checkPermissions()
         fetchInstanceId()
-        fab.setOnClickListener { view ->
+        enrollment_button.setOnClickListener { view ->
             beginEnrollment()
-//            linkUser("789900")
+        }
+
+        linking_button.setOnClickListener{ view ->
+
+            linkUser(linkingCodeEditText.text.toString())
+
+//            retrofitWrapper
+//                .handleTransactionEndpoints()
+//                .linkUser("035212")
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(Consumer { t  ->
+//                    Log.d("Okay testing", t.toString())
+//                    linkUser("151498")
+//                }, Consumer { t -> Log.d("Error handler", t.localizedMessage)  })
+
         }
     }
 
+    fun errorHandler(error: Throwable) {
+
+    }
+
+    fun successHandler(data: LinkingStatus) {
+
+    }
+
     private fun beginEnrollment() {
-        val appPns = preferenceRepo.getAppPns()
+        val appPns = preferenceRepo.appPNS
         Toast.makeText(this@MainActivity, appPns + " " + BuildConfig.SERVER_URL + " " + BuildConfig.INSTALLATION_ID, Toast.LENGTH_LONG).show()
         val spaEnroll = SpaEnrollData(appPns,
             BuildConfig.PUB_PSS_B64,
@@ -80,18 +114,17 @@ class MainActivity : AppCompatActivity() {
 
     fun linkUser(linkingCode: String) {
         val psaManager = PsaManager.getInstance()
-        val listener: LinkingScenarioListener = object: LinkingScenarioListener{
+        val linkingScenarioListener: LinkingScenarioListener = object: LinkingScenarioListener{
             override fun onLinkingCompletedSuccessful(var1: Long, var3: String){
                 Toast.makeText(this@MainActivity, "Linking Successful", Toast.LENGTH_LONG).show()
             }
 
             override fun onLinkingFailed(var1: ApplicationState) {
-                Toast.makeText(this@MainActivity, "Linking not Successful", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "Linking not Successful: linkingCode: ${linkingCodeEditText.text} errorCode: ${var1.code} ", Toast.LENGTH_LONG).show()
             }
         }
 
-        val _linkingCode = "405607"
-        psaManager.linkTenant(_linkingCode, SpaStorageManager(this), listener)
+        psaManager.linkTenant(linkingCode, preferenceRepo, linkingScenarioListener)
     }
 
     private fun fetchInstanceId () {
@@ -103,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                     return@OnCompleteListener
                 }
                 val token = task.result?.token
-                preferenceRepo.persistAppPns(token.toString())
+                preferenceRepo.putAppPNS(token.toString())
             })
     }
 
@@ -115,12 +148,12 @@ class MainActivity : AppCompatActivity() {
                 data?.run {
                     val resultData = PsaIntentUtils.enrollResultFromIntent(this)
                     resultData.let {
-                        preferenceRepo.saveExternalID(it.externalId)
+                        preferenceRepo.putExternalId(it.externalId)
                     }
                     Toast.makeText(applicationContext,   "Successfully got this externalId " + resultData.externalId, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Error Retrieving intent after enrollment: $resultCode", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error Retrieving intent after enrollment:- code: ${linkingCodeEditText.text} errorCode: $resultCode", Toast.LENGTH_SHORT).show()
             }
         }
         // Here you can receive result of the authorization flow

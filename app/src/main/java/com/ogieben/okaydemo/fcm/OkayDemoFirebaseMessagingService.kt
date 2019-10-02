@@ -8,7 +8,7 @@ class OkayDemoFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         token?.run {
-            PreferenceRepo(this@OkayDemoFirebaseMessagingService).persistAppPns(token)
+            PreferenceRepo(this@OkayDemoFirebaseMessagingService).putExternalId(token)
         }
     }
 }

@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "PUB_PSS_B64", "\"$pubPssB64\""
         buildConfigField "String", "INSTALLATION_ID", "\"$installationId\""
-        buildConfigField "String", "SERVER_URL", "\"http://35.157.190.14:9080\""
+        buildConfigField "String", "SERVER_URL", "\"http://protdemo.demohoster.com\""
     }
     dataBinding {
         enabled = true
@@ -50,6 +50,15 @@ android {
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
         implementation 'com.okaythis.sdk:psa:1.1.0'
         implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
+        // retrofit
+        implementation 'com.google.code.gson:gson:2.8.5'
+        implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+        implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+        implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+        implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
+        implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
     }
 
 apply plugin: 'com.google.gms.google-services'
