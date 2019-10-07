@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+
 interface TransactionEndpoints {
 
     @POST("/link")
@@ -13,4 +14,7 @@ interface TransactionEndpoints {
 
     @POST("/auth")
     fun authorizeTransaction(@Query("userExternalId") userExternalId: String?): Call<AuthorizationResponse>
+
+    @POST("/auth/otp")
+    fun authorizeOTPTransaction(@Query("userExternalId") userExternalId: String?): Call<AuthorizationResponse>
 }

@@ -55,11 +55,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         linkingButton.setOnClickListener{
+
             startServerLinking(preferenceRepo.externalId)
         }
 
         authorizeButton.setOnClickListener {
             startServerAuthorization(preferenceRepo.externalId)
+        }
+
+        manualLinkButton.setOnClickListener{
+            val linkingCode =  linkingCodeEditText.text.toString()
+            if(linkingCode.isEmpty()){
+                Toast.makeText(this, "Linking code can't be empty. Please enter linking code in the input field", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            linkUser(linkingCode)
+        }
+
+        pinAuthorizationButton.setOnClickListener{
+            startOTPTansaction(preferenceRepo.externalId)
         }
 
     }
@@ -199,6 +213,22 @@ class MainActivity : AppCompatActivity() {
 
        })
 
+    }
+
+    private fun startOTPTansaction(userExternalId: String?) {
+        transactionHandler.authorizeOTPTransaction(userExternalId).enqueue(object: Callback<AuthorizationResponse> {
+            override fun onFailure(call: Call<AuthorizationResponse>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Error making request to Server", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(
+                call: Call<AuthorizationResponse>,
+                response: Response<AuthorizationResponse>
+            ) {
+                Toast.makeText(this@MainActivity, "Request made successfully ", Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
 

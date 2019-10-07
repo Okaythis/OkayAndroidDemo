@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Link User "
+            android:text="Link User Automatically"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,13 +35,13 @@
             android:id="@+id/linkingCodeEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="188dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Enter linking code here"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linkingButton" />
 
@@ -52,6 +52,31 @@
             android:text="Start Authorization"
             app:layout_constraintBottom_toTopOf="@+id/linkingCodeEditText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linkingButton" />
+            app:layout_constraintTop_toBottomOf="@+id/linkingButton"
+            app:layout_constraintVertical_bias="0.2" />
+
+    <Button
+            android:id="@+id/manualLinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Link Manually"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linkingCodeEditText"
+            app:layout_constraintVertical_bias="0.838" />
+
+    <Button
+            android:id="@+id/pinAuthorizationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Authorization with Pin"
+            app:layout_constraintBottom_toTopOf="@+id/linkingCodeEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/authorizeButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
