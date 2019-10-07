@@ -6,13 +6,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitWrapper {
 
-    private val BASE_URL = ""
+    private val BASE_URL = "http://okayserversample.herokuapp.com/"
 
     fun createClient(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 

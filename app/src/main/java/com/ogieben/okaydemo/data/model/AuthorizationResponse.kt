@@ -1,4 +1,3 @@
 package com.ogieben.okaydemo.data.model
 
-class AuthorizationResponse {
-}
+data class AuthorizationResponse(val sessionExternalId: String, val status: Status)

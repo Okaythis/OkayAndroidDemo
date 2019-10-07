@@ -22,7 +22,6 @@ class OkayDemoFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteData: RemoteMessage) {
-        Log.d("Firebase Messaging", "Message from firebase ${remoteData!!.from!!}")
 
         if(remoteData.data.isNotEmpty()){
             // handle notification

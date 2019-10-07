@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.itransition.protectoria.psa_multitenant.protocol.scenarios.linking.LinkingScenarioListener
 import com.itransition.protectoria.psa_multitenant.state.ApplicationState
 import com.ogieben.okaydemo.BuildConfig
 import com.ogieben.okaydemo.R
-import com.ogieben.okaydemo.data.model.LinkingStatus
+import com.ogieben.okaydemo.data.model.AuthorizationResponse
+import com.ogieben.okaydemo.data.model.OkayLinking
 import com.ogieben.okaydemo.data.repository.PreferenceRepo
 import com.ogieben.okaydemo.network.retrofit.RetrofitWrapper
 import com.ogieben.okaydemo.utils.PermissionHelper
@@ -23,20 +23,21 @@ import com.protectoria.psa.api.PsaConstants
 import com.protectoria.psa.api.converters.PsaIntentUtils
 import com.protectoria.psa.api.entities.SpaEnrollData
 import com.protectoria.psa.dex.common.data.enums.PsaType
-import androidx.lifecycle.ViewModelProviders
-import com.ogieben.okaydemo.fcm.NotificationDataContent
 import com.ogieben.okaydemo.fcm.OkayDemoFirebaseMessagingService
 import com.protectoria.psa.api.entities.SpaAuthorizationData
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var preferenceRepo: PreferenceRepo
     private val permissionHelper = PermissionHelper(this)
     private val retrofitWrapper = RetrofitWrapper()
-    private lateinit var mainActivityViewModel: MainActivityViewModel
+    private val transactionHandler =  retrofitWrapper.handleTransactionEndpoints()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +48,24 @@ class MainActivity : AppCompatActivity() {
 
         checkPermissions()
         fetchInstanceId()
-        enrollment_button.setOnClickListener { view ->
+        handleIntent(intent)
+
+        enrollmentButton.setOnClickListener { view ->
             beginEnrollment()
         }
 
+        linkingButton.setOnClickListener{
+//            linkUser(linkingCodeEditText.text.toString())
+            startServerLinking(preferenceRepo.externalId)
+        }
+
+        authorizeButton.setOnClickListener {
+            startServerAuthorization(preferenceRepo.externalId)
+        }
+
+    }
+
+    private fun handleIntent(intent: Intent?) {
         intent?.apply {
             val sessionId =  getLongExtra(OkayDemoFirebaseMessagingService.ACTIVITY_WAKE_UP_KEY, 0)
             if (sessionId > 0)  {
@@ -58,13 +73,7 @@ class MainActivity : AppCompatActivity() {
                 startAuthorization(sessionId)
             }
         }
-
-        linking_button.setOnClickListener{ view ->
-            linkUser(linkingCodeEditText.text.toString())
-        }
-
     }
-
 
 
     private fun beginEnrollment() {
@@ -101,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun linkUser(linkingCode: String) {
+    private fun linkUser(linkingCode: String) {
         val psaManager = PsaManager.getInstance()
         val linkingScenarioListener: LinkingScenarioListener = object: LinkingScenarioListener{
             override fun onLinkingCompletedSuccessful(var1: Long, var3: String){
@@ -155,11 +164,43 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startAuthorization(sessionId: Long) {
+    private fun startAuthorization(sessionId: Long) {
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
             preferenceRepo.appPNS,
             null,
             PsaType.OKAY))
     }
+
+    private fun startServerAuthorization(userExternalId: String?) {
+        transactionHandler.authorizeTransaction(userExternalId).enqueue(object: Callback<AuthorizationResponse> {
+            override fun onFailure(call: Call<AuthorizationResponse>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Error making request to Server", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(
+                call: Call<AuthorizationResponse>,
+                response: Response<AuthorizationResponse>
+            ) {
+                Toast.makeText(this@MainActivity, "Request made successfully ", Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
+    private fun startServerLinking(userExternalId: String?) {
+       transactionHandler.linkUser(userExternalId).enqueue(object: Callback<OkayLinking>{
+           override fun onFailure(call: Call<OkayLinking>, t: Throwable) {
+               Toast.makeText(this@MainActivity, "Error making request to Server ${t.localizedMessage}", Toast.LENGTH_LONG).show()
+               t.printStackTrace()
+           }
+
+           override fun onResponse(call: Call<OkayLinking>, response: Response<OkayLinking>) {
+               linkUser(response?.body()!!.linkingCode)
+           }
+
+       })
+
+    }
+
 
 }

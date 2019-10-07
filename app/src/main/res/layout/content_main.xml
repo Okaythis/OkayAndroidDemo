@@ -9,7 +9,7 @@
         tools:showIn="@layout/activity_main">
 
     <Button
-            android:id="@+id/enrollment_button"
+            android:id="@+id/enrollmentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Enrollment"
@@ -21,7 +21,7 @@
             app:layout_constraintVertical_bias="0.253" />
 
     <Button
-            android:id="@+id/linking_button"
+            android:id="@+id/linkingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enrollment_button" />
+            app:layout_constraintTop_toBottomOf="@+id/enrollmentButton" />
 
     <EditText
             android:id="@+id/linkingCodeEditText"
@@ -43,5 +43,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linking_button" />
+            app:layout_constraintTop_toBottomOf="@+id/linkingButton" />
+
+    <Button
+            android:id="@+id/authorizeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Authorization"
+            app:layout_constraintBottom_toTopOf="@+id/linkingCodeEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linkingButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
