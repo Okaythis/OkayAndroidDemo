@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         linkingButton.setOnClickListener{
-//            linkUser(linkingCodeEditText.text.toString())
             startServerLinking(preferenceRepo.externalId)
         }
 
