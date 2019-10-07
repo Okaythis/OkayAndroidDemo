@@ -1,4 +1,4 @@
-package com.ogieben.okaydemo.ui
+package com.ogieben.okaydemo.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.itransition.protectoria.psa_multitenant.protocol.scenarios.linking.LinkingScenarioListener
@@ -14,22 +15,18 @@ import com.itransition.protectoria.psa_multitenant.state.ApplicationState
 import com.ogieben.okaydemo.BuildConfig
 import com.ogieben.okaydemo.R
 import com.ogieben.okaydemo.data.model.LinkingStatus
-import com.ogieben.okaydemo.data.model.OkayLinking
 import com.ogieben.okaydemo.data.repository.PreferenceRepo
-import com.ogieben.okaydemo.data.repository.SpaStorageManager
 import com.ogieben.okaydemo.network.retrofit.RetrofitWrapper
-import com.ogieben.okaydemo.network.retrofit.TransactionEndpoints
 import com.ogieben.okaydemo.utils.PermissionHelper
 import com.protectoria.psa.PsaManager
 import com.protectoria.psa.api.PsaConstants
 import com.protectoria.psa.api.converters.PsaIntentUtils
 import com.protectoria.psa.api.entities.SpaEnrollData
 import com.protectoria.psa.dex.common.data.enums.PsaType
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.plugins.RxJavaPlugins.onError
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.ViewModelProviders
+import com.ogieben.okaydemo.fcm.NotificationDataContent
+import com.ogieben.okaydemo.fcm.OkayDemoFirebaseMessagingService
+import com.protectoria.psa.api.entities.SpaAuthorizationData
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -39,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var preferenceRepo: PreferenceRepo
     private val permissionHelper = PermissionHelper(this)
     private val retrofitWrapper = RetrofitWrapper()
+    private lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,30 +51,21 @@ class MainActivity : AppCompatActivity() {
             beginEnrollment()
         }
 
-        linking_button.setOnClickListener{ view ->
-
-            linkUser(linkingCodeEditText.text.toString())
-
-//            retrofitWrapper
-//                .handleTransactionEndpoints()
-//                .linkUser("035212")
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(Consumer { t  ->
-//                    Log.d("Okay testing", t.toString())
-//                    linkUser("151498")
-//                }, Consumer { t -> Log.d("Error handler", t.localizedMessage)  })
-
+        intent?.apply {
+            val sessionId =  getLongExtra(OkayDemoFirebaseMessagingService.ACTIVITY_WAKE_UP_KEY, 0)
+            if (sessionId > 0)  {
+                Toast.makeText(this@MainActivity, "Current sessionId $sessionId ", Toast.LENGTH_LONG).show()
+                startAuthorization(sessionId)
+            }
         }
-    }
 
-    fun errorHandler(error: Throwable) {
-
-    }
-
-    fun successHandler(data: LinkingStatus) {
+        linking_button.setOnClickListener{ view ->
+            linkUser(linkingCodeEditText.text.toString())
+        }
 
     }
+
+
 
     private fun beginEnrollment() {
         val appPns = preferenceRepo.appPNS
@@ -156,14 +145,21 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error Retrieving intent after enrollment:- code: ${linkingCodeEditText.text} errorCode: $resultCode", Toast.LENGTH_SHORT).show()
             }
         }
-        // Here you can receive result of the authorization flow
-//        if (requestCode == PsaConstants.ACTIVITY_REQUEST_CODE_PSA_AUTHORIZATION) {
-//            if (resultCode == RESULT_OK) {
-//                Toast.makeText(this, getString(R.string.auth_success), Toast.LENGTH_SHORT).show()
-//            } else {
-//                Toast.makeText(this, getString(R.string.auth_error), Toast.LENGTH_SHORT).show()
-//            }
-//        }
+
+        if (requestCode == PsaConstants.ACTIVITY_REQUEST_CODE_PSA_AUTHORIZATION) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Authorization granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Authorization not granted", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun startAuthorization(sessionId: Long) {
+        PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
+            preferenceRepo.appPNS,
+            null,
+            PsaType.OKAY))
     }
 
 }

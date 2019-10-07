@@ -9,4 +9,7 @@ interface TransactionEndpoints {
 
     @POST("/link")
     fun linkUser(@Query("userExternalId") userExternalId: String): FlowableAny<OkayLinking>
+
+    @POST("/auth")
+    fun authorizeTransaction()
 }
