@@ -24,7 +24,7 @@ import com.protectoria.psa.api.converters.PsaIntentUtils
 import com.protectoria.psa.api.entities.SpaEnrollData
 import com.protectoria.psa.dex.common.data.enums.PsaType
 import com.ogieben.okaydemo.fcm.OkayDemoFirebaseMessagingService
-import com.ogieben.okaydemo.ui.main.theme.BaseTheme
+import com.ogieben.okaydemo.ui.theme.BaseTheme
 import com.protectoria.psa.api.entities.SpaAuthorizationData
 
 import kotlinx.android.synthetic.main.activity_main.*
