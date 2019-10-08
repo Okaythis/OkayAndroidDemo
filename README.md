@@ -419,7 +419,7 @@ class OkayDemoApplication: Application() {
 
 We will send a request to our server to start the linking process. We will be sending the ***externalId*** generated from Okay SDK(or any `UUID` you can create for this paticular user) as a parameter to our server. If our request was processed successfully we will recieve a response with the **linkingCode** required to complete the linking. The linkCode is a six digit number generated for this purpose. For illustration we will be using this server `https://okayserversample.herokuapp.com/` as test server for this section. 
 
-To illustration how linking on the backend, please send a **POST** request to this endpoint `https://okayserversample.herokuapp.com/link?userExternalId=REPLACE_WITH_EXTERNAL_ID_HERE`. This is a light weight demo server we built just to test this app. You should receive a response with the structure below.
+To test how linking is initiated on the backend, please send a **POST** request to this endpoint `https://okayserversample.herokuapp.com/link?userExternalId=REPLACE_WITH_EXTERNAL_ID_HERE`. This is a light weight demo server we built just to test this app. You should receive a response with the structure below.
 
 ```json
 {
