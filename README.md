@@ -73,7 +73,7 @@ If this was the response we got, then we will need to retreive the `"linkingCode
   http://localhost:4000/auth?userExternalId=xUdKijgIHFnhyi+d7pnabHS8gjHLy/qqkXtOYZkKrpo=
 ```
 
-If this request was handled successfully, Okay server will send a push notication to the mobile app, that will display the authorization screen, allowing the user to **OK** the transaction or probally decline the request. You will see a screen like the one below.
+If this request was handled successfully, Okay server will send a push notication to the mobile app, that will display the authorization screen, allowing the user to **OK** the transaction or probably decline the request. You will see a screen like the one below.
 
 <img src="https://github.com/Okaythis/OkayNodeJs/blob/master/app/public/images/auth-screen.png" alt="Authorization Screen" width="400" />
 
@@ -85,7 +85,7 @@ If this request was handled successfully, Okay server will send a push noticatio
   http://localhost:4000/auth/pin?userExternalId=xUdKijgIHFnhyi+d7pnabHS8gjHLy/qqkXtOYZkKrpo=
 ```
 
-If this request was handled successfully, Okay server will send a push notication to the mobile app, that will display the authorization screen, allowing the user to enter a pin in order ot complete the transaction or probally decline the request. As of now just type in any pin to complete the transaction. The pin that was entered by the user will be sent as body parameters to your tenant callbeck(To understand how to set a callback for your tenant please see this [documentation](https://github.com/Okaythis/OkayNodeJs)). Remember, you are responsible for generating and validating the pins that your users will use in your production server.
+If this request was handled successfully, Okay server will send a push notication to the mobile app, that will display the authorization screen, allowing the user to enter a pin in order ot complete the transaction or probably decline the request. As of now just type in any pin to complete the transaction. The pin that was entered by the user will be sent as body parameters to your tenant callbeck(To understand how to set a callback for your tenant please see this [documentation](https://github.com/Okaythis/OkayNodeJs)). Remember, you are responsible for generating and validating the pins that your users will use in your production server.
 
 
 Now that we know how these enpoints work we can now call them from our app when we host this server in the cloud.

@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         manualLinkButton.setOnClickListener{
             val linkingCode =  linkingCodeEditText.text.toString()
             if(linkingCode.isEmpty()){
-                Toast.makeText(this, "Linking code can't be empty. Please enter linking code in the input field", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Linking code can't be empty. Please enter linking code in the input field ", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             linkUser(linkingCode)
