@@ -36,12 +36,16 @@ http://localhost:4000/auth/pin?userExternalId=USER_EXTERNAL_ID
 We also recommend you install **Postman** for testing your queries, as this is what we will be using for testing. Feel free to use curl or any other tool you feel comfortable with.
 
 ## How we use these endpoints on the server.
+Before we use this endpoints, we will need to enroll the user with Okay SDK, and then retreive the user's `externalId` from Okay SDK after enrollment or we could just create a `UUID` as our `externalId` for our user after enrollment. 
+
+Given that enrollment is being handled by Okay SDK, we will explain how to initiate enrollment in the **Enrollment with Okay SDK on Android** section for the SDK below.
+
+An `externalId` is a unique identifier the we use to identify different users that are linked to our tenant. Any unique identifier can work here.
+
+### Enrollment.
+To start enrollment just click the **Start Enrollment** button on the app, and Okay will handle the rest.
 
 ### Linking Endpoint
-Before we use this endpoints, we will need to enroll the user with Okay SDK then retreive the user's `externalId` from Okay SDK after enrollment or we could just create a `UUID` as our `externalId` for our user after enrollment. Given that enrollment is being handled by Okay SDK, we will explain how to initiate enrollment in the **Enrollment with Okay SDK on Android** section for the SDK below.
-
-`externalId` is a unique identifier the we use to identify different users that are linked to our tenant. Any unique identifier can work here.
-
 After we retreive the `externalId` from Okay SDK or `UUID` we generated(our generated `UUID` becomes our `externalId`), we will send this extenalId to our server's linking url to link this user with our tenant(For more information about how we created a tenant for this server, please read the documentation [here](https://github.com/Okaythis/OkayNodeJs)). 
 
 Let us assume we just finished enrolling a new user on the app after clicking the **Start Enrollment** button on the app, we use `xUdKijgIHFnhyi+d7pnabHS8gjHLy/qqkXtOYZkKrpo=` as our user's `externalId`. We send this `externalId` to this endpoint `http://localhost:4000/link` like so:
