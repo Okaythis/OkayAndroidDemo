@@ -82,7 +82,7 @@ If this request was handled successfully, Okay server will send a push noticatio
 <img src="https://github.com/Okaythis/OkayNodeJs/blob/master/app/public/images/auth-screen.png" alt="Authorization Screen" width="400" />
 
 
-**PIN Authorization:**  To start authorization with pin on Okay, we send a request to our server like so passing the `externalId`as query parameter like so:
+**PIN Authorization:**  To start authorization with pin on Okay, we send a request to our server, passing the `externalId`as query parameter like so:
 
 
 ```js
