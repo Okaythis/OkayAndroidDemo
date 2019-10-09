@@ -67,7 +67,7 @@ if linking was succesful after our request, we get a response body like this:
 }
 ```
 
-If this was the response we got, then we will need to retreive the `"linkingCode": "579813"` as this is the value we need to finish linking the user. We can proceed to linking this user by passing the `linkingCode` into the `EditTextField` in the app, then click the `Link Manually` button. If all goes well you should see a toast display **Linking Successful** on the mobile app. If linking was successful, we can now start authorization request from our server.
+If this was the kind of response we got, then we will need to retreive the `"linkingCode": "579813"` (your `linkingCode` may not be the same with `"579813"`. Your value may be different) as this is the value we need to finish linking the user. We can proceed to linking this user by passing the `linkingCode` into the `EditTextField` in the app, then click the `Link Manually` button. If all goes well you should see a toast display **Linking Successful** on the mobile app. If linking was successful, we can now start authorization request from our server.
 
 ### Authorization Endpoint
 
