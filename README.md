@@ -35,7 +35,7 @@ http://localhost:4000/auth/pin?userExternalId=USER_EXTERNAL_ID
 
 We also recommend you install **Postman** for testing your queries, as this is what we will be using for testing. Feel free to use curl or any other tool you feel comfortable with.
 
-## How we use these endpoints on the server.
+## How we use these endpoints on the App.
 Before we use this endpoints, we will need to enroll the user with Okay SDK, and then retreive the user's `externalId` from Okay SDK after enrollment or we could just create a `UUID` as our `externalId` for our user after enrollment. 
 
 Given that enrollment is being handled by Okay SDK, we will explain how to initiate enrollment in the **Enrollment with Okay SDK on Android** section for the SDK below.
@@ -598,7 +598,8 @@ Starting an authorization begins with a simple request (POST) to our demo server
 }
 ```
 
-Our application will recieve a Push Notification that will be handled by our FirebaseMassagingService (This service is part of Firebase messaging if you are yet to setup Firebase please see this [documentaion](https://firebase.google.com/docs/cloud-messaging/android/client)). In this illustration we extend this service in our app using the `OkayDemoFirebaseMessagingService` class. 
+Our application will recieve a Push Notification that will be handled by our FirebaseMessagingService (This service is part of Firebase messaging if you are yet to setup Firebase please see this [documen
+taion](https://firebase.google.com/docs/cloud-messaging/android/client)). In this illustration we extend this service in our app using the `OkayDemoFirebaseMessagingService` class. 
 
 This is what our `OkayDemoFirebaseMessagingService` class looks like.
 
