@@ -223,7 +223,7 @@ class OkayDemoApplication: Application() {
 
     private fun initPsa() {
         val psaManager = PsaManager.init(this, OkayDemoLogger())
-        psaManager.setPssAddress(BuildConfig.SERVER_URL)
+        psaManager.setPssAddress("http://protdemo.demohoster.com")
     }
 }
 ```
@@ -258,6 +258,7 @@ We will need to add our application class to our manifest file by adding `androi
       android:label="@string/app_name"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
+      android:usesCleartextTraffic="true"
       android:theme="@style/AppTheme">
 
       ...
