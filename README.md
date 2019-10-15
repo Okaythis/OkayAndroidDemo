@@ -106,7 +106,18 @@ Before we begin enrollment with Okay on our Android app, we will need to add Oka
 
 // app/build.gradle
 
-...
+android {
+
+    ...
+    // add these lines to your gradle file
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -147,6 +158,19 @@ We will also need to set up Firebase for our project. If you are not familiar wi
 ```gradle
 // app/build.gradle
 
+android {
+
+    ...
+    // add these lines to your gradle file
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -161,7 +185,7 @@ dependencies {
     // Okay dependency
     implementation 'com.okaythis.sdk:psa:1.1.0'
 
-    // Firebase Dependency
+    // Firebase dependency
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 ```
@@ -409,12 +433,12 @@ class OkayDemoApplication: Application() {
 
   private fun initPsa() {
       val psaManager = PsaManager.init(this, OkayDemoLogger())
-      psaManager.setPssAddress(BuildConfig.SERVER_URL)
+      psaManager.setPssAddress("http://protdemo.demohoster.com")
   }
 
   // Added this method 
   private fun initGatewayServer() {
-      GatewayRestServer.init(PsaGsonFactory().create(), BuildConfig.SERVER_URL + "/gateway/")
+      GatewayRestServer.init(PsaGsonFactory().create(),  "http://protdemo.demohoster.com/gateway/")
   }
 }
 
