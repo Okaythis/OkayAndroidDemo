@@ -35,7 +35,7 @@ http://localhost:4000/auth/pin?userExternalId=USER_EXTERNAL_ID
 
 We also recommend you install **Postman** for testing your queries, as this is what we will be using for testing. Feel free to use curl or any other tool you feel comfortable with.
 
-## How we use these endpoints on the App.
+## How we use these endpoints on the Server.
 Before we use this endpoints, we will need to enroll the user with Okay SDK, and then retreive the user's `externalId` from Okay SDK after enrollment or we could just create a `UUID` as our `externalId` for our user after enrollment. 
 
 Given that enrollment is being handled by Okay SDK, we will explain how to initiate enrollment in the **Enrollment with Okay SDK on Android** section for the SDK below.
