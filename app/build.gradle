@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "PUB_PSS_B64", "\"$pubPssB64\""
         buildConfigField "String", "INSTALLATION_ID", "\"$installationId\""
-        buildConfigField "String", "SERVER_URL", "\"http://protdemo.demohoster.com\""
+        buildConfigField "String", "SERVER_URL", "\"https://demostand.okaythis.com\""
     }
     dataBinding {
         enabled = true
