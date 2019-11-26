@@ -2,7 +2,7 @@
 
 ## How to use this app
 
-**Note:** Our server and mobile App uses this endpoint **https://demostand.okaythis.com/** as our PSS base url(since we are testing). It is important that these urls are the same, otherwise linking and authorization won't work, as we need them to use the same server.
+**Note:** Our server and mobile App uses this endpoint **https://demostand.okaythis.com** as our PSS base url(since we are testing). It is important that these urls are the same, otherwise linking and authorization won't work, as we need them to use the same server.
 
 This application illustrates some simple use cases for enrollment, linking and authorization. It requires a server to function properly, so we built one in Nodejs, which can be found on this repository https://github.com/Okaythis/OkayNodeJs.
 
