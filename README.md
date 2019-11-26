@@ -2,7 +2,7 @@
 
 ## How to use this app
 
-**Note:** Our server and mobile App uses this endpoint **http://protdemo.demohoster.com** as our PSS base url(since we are testing). It is important that these urls are the same, otherwise linking and authorization won't work, as we need them to use the same server.
+**Note:** Our server and mobile App uses this endpoint **https://demostand.okaythis.com/** as our PSS base url(since we are testing). It is important that these urls are the same, otherwise linking and authorization won't work, as we need them to use the same server.
 
 This application illustrates some simple use cases for enrollment, linking and authorization. It requires a server to function properly, so we built one in Nodejs, which can be found on this repository https://github.com/Okaythis/OkayNodeJs.
 
@@ -193,7 +193,7 @@ We use the `PsaManager` class from Okay to initialize our PSA. We will be using 
 
   PsaManager psaManager = PsaManager.init(Context c, T extends ExceptionLogger)
 
-  // The PSS_SERVER_ENDPOINT is the url address for our PSS service e.g http://protdemo.demohoster.com
+  // The PSS_SERVER_ENDPOINT is the url address for our PSS service e.g https://demostand.okaythis.com/
   psaManager.setPssAddress(PSS_SERVER_ENDPOINT);
 ```
 
@@ -212,7 +212,7 @@ class OkayDemoApplication: Application() {
 
     private fun initPsa() {
         val psaManager = PsaManager.init(this, OkayDemoLogger())
-        psaManager.setPssAddress("http://protdemo.demohoster.com")
+        psaManager.setPssAddress("https://demostand.okaythis.com")
     }
 }
 ```
@@ -418,12 +418,12 @@ To enable linking on the your app you will need to add this line of code to your
 
     private fun initPsa() {
         val psaManager = PsaManager.init(this, OkayDemoLogger())
-        psaManager.setPssAddress("http://protdemo.demohoster.com")
+        psaManager.setPssAddress("https://demostand.okaythis.com")
     }
 
     // Added this method 
     private fun initGatewayServer() {
-        GatewayRestServer.init(PsaGsonFactory().create(), "http://protdemo.demohoster.com/gateway/")
+        GatewayRestServer.init(PsaGsonFactory().create(), "https://demostand.okaythis.com/gateway/")
     }
 }
 
