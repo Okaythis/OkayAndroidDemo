@@ -864,8 +864,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    ...
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PsaConstants.ACTIVITY_REQUEST_CODE_PSA_ENROLL) {
+            if (resultCode == RESULT_OK) {
+                //We should save data from Enrollment result, for future usage
+                data?.run {
+                    val resultData = PsaIntentUtils.enrollResultFromIntent(this)
+                    resultData.let {
+                        preferenceRepo.putExternalId(it.externalId)
+                    }
+                    Toast.makeText(applicationContext,   "Successfully got this externalId " + resultData.externalId, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Error Retrieving intent after enrollment:- code: ${linkingCodeEditText.text} errorCode: $resultCode", Toast.LENGTH_SHORT).show()
+            }
+        }
 
+        if (requestCode == PsaConstants.ACTIVITY_REQUEST_CODE_PSA_AUTHORIZATION) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Authorization granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Authorization not granted", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
     private fun startAuthorization(sessionId: Long) {
         // Start authorization here
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
