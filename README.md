@@ -869,9 +869,9 @@ class MainActivity : AppCompatActivity() {
     private fun startAuthorization(sessionId: Long) {
         // Start authorization here
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
-            preferenceRepo.appPNS,
-            null,
-            PsaType.OKAY))
+        preferenceRepo.appPNS,
+        BaseTheme(this).DEFAULT_PAGE_THEME,
+        PsaType.OKAY))
     }
 
     private fun startServerAuthorization(userExternalId: String?) {
