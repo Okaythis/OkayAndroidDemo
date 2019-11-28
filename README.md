@@ -587,7 +587,7 @@ After we successfully generated the linking code we can now proceed to linking t
 PsaManager.linkTenant(linkingCode: String, spaStorage: SpaStorage, linkingScenarioListener: LinkingScenarioListener)
 ```
 
-The **LinkingScenarioListener** must be implemented, as it allows us to listen for two possible events: **onLinkingCompletedSuccessful** and **onLinkingCompletedSuccessful**. We will be implementing this listener soon.
+The **LinkingScenarioListener** must be implemented, as it allows us to listen for two possible events: **onLinkingCompletedSuccessful** and **onLinkingFailed**. We will be implementing this listener soon.
 
 We will also need to implement the **SpaStorage** interface in our application. I think the easiest place to do this, is from one of our repositories(**PreferenceRepo** class in this case). Of course this is just for convenience.
 
