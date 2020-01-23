@@ -1,101 +1,58 @@
 {
   "project_info": {
-    "project_number": "959797222924",
-    "firebase_url": "https://okaysdkdemosupport.firebaseio.com",
-    "project_id": "okaysdkdemosupport",
-    "storage_bucket": "okaysdkdemosupport.appspot.com"
+    "project_number": "679636352165",
+    "firebase_url": "https://okaydemoandroid.firebaseio.com",
+    "project_id": "okaydemoandroid",
+    "storage_bucket": "okaydemoandroid.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:959797222924:android:b330f62790bec3b75c1829",
+        "mobilesdk_app_id": "1:679636352165:android:c7ab4519cd17e82b0be14c",
         "android_client_info": {
           "package_name": "com.ogieben.okaydemo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCNQtng1azV6IYCYRtlmqB3DCAwRx--C0k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:959797222924:android:07ff5cd94d2f33e0",
-        "android_client_info": {
-          "package_name": "com.okay.android.sdkdemo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "959797222924-6k2p9343032uvvr48pnb3s5ujht8vchb.apps.googleusercontent.com",
+          "client_id": "679636352165-9asdlchuvboc53b6qfl0ah4d9mbj98mt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.okay.android.sdkdemo",
-            "certificate_hash": "daab087f24fe7aa3788671d5bcfac6e06f7e91c8"
+            "package_name": "com.ogieben.okaydemo",
+            "certificate_hash": "00ec84d45cd3c71d18bc75a6f7d98fc9d6d28cc2"
           }
         },
         {
-          "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
+          "client_id": "679636352165-0nbo2b5d4nadatlm8ajvkpa8guvr57b4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ogieben.okaydemo",
+            "certificate_hash": "884a17761b7e6ac4245bc98300b8129d83a69a2a"
+          }
+        },
+        {
+          "client_id": "679636352165-jcu44644ot9f5e7cnkdvlncv9sj91hs3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCNQtng1azV6IYCYRtlmqB3DCAwRx--C0k"
+          "current_key": "AIzaSyCG6t-Y1N5QoAas05TIZGYwP0jLCSNdBiE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
+              "client_id": "679636352165-jcu44644ot9f5e7cnkdvlncv9sj91hs3.apps.googleusercontent.com",
               "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:959797222924:android:a424551e8edd99d3",
-        "android_client_info": {
-          "package_name": "com.protectoria.okaythis"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCNQtng1azV6IYCYRtlmqB3DCAwRx--C0k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
+            },
             {
-              "client_id": "959797222924-ejrv2b9td1u24rbjceag5fj03jnuqrvr.apps.googleusercontent.com",
-              "client_type": 3
+              "client_id": "679636352165-n13fr7he9pf9qq7ajnr4u04a1p45ba2f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.okaythis.flutterokaydemo"
+              }
             }
           ]
         }

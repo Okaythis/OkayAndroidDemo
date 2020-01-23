@@ -5,9 +5,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgyacF1NNWTA6rzCrtK60se9fVpTPe3HiDjHB7MybJvNdJZIgZbE9k3gQ6cdEYgTOSG823hkJCVHZrcf0/AK7G8Xf/rjhWxccOEXFTg4TQwmhbwys+sY/DmGR8nytlNVbha1DV/qOGcqAkmn9SrqW76KK+EdQFpbiOzw7RRWZuizwY3BqRfQRokr0UBJrJrizbT9ZxiVqGBwUDBQrSpsj3RUuoj90py1E88ExyaHui+jbXNITaPBUFJjbas5OOnSLVz6GrBPOD+x0HozAoYuBdoztPRxpjoNIYvgJ72wZ3kOAVPAFb48UROL7sqK2P/jwhdd02p/MDBZpMl/+BG+qQIDAQAB'
-ext.installationId = '9990'
-
+//ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgyacF1NNWTA6rzCrtK60se9fVpTPe3HiDjHB7MybJvNdJZIgZbE9k3gQ6cdEYgTOSG823hkJCVHZrcf0/AK7G8Xf/rjhWxccOEXFTg4TQwmhbwys+sY/DmGR8nytlNVbha1DV/qOGcqAkmn9SrqW76KK+EdQFpbiOzw7RRWZuizwY3BqRfQRokr0UBJrJrizbT9ZxiVqGBwUDBQrSpsj3RUuoj90py1E88ExyaHui+jbXNITaPBUFJjbas5OOnSLVz6GrBPOD+x0HozAoYuBdoztPRxpjoNIYvgJ72wZ3kOAVPAFb48UROL7sqK2P/jwhdd02p/MDBZpMl/+BG+qQIDAQAB'
+//ext.installationId = '9990'
+ext.installationId = '10000'
+ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA494A0mHzkciBS0xsMCH9ZTp9SF/pwczKaXSSOfxghpSYzkcJktjozIwYn5MYN/tU5zHuPz1eN++K7bszsCGX5IMQSVrlL4aTIpF5kH9EM9eXmV4t+YfHoJLLs7eJuc4OckGyyHjMaTlvItRH3FPbwJtonCbxIIP9UqXUEeDB8Ltr2jHtnCgaf8A829uWf7Vy5rtj572YH45RTGdFDstdPSorgZ/GWMKBoevBUE4tRh7z/yVAFrooebPcMFOP5VUQwqnxM1GjUO6eARnL5QSu5DfMn9GrE+BwzKcMcxDgVwuKwyStmaSFTg0AVwUT/y0C3uAR6dex0wFuHS61gcZvMwIDAQAB'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -20,7 +21,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "PUB_PSS_B64", "\"$pubPssB64\""
         buildConfigField "String", "INSTALLATION_ID", "\"$installationId\""
-        buildConfigField "String", "SERVER_URL", "\"https://demostand.okaythis.com\""
+        buildConfigField "String", "SERVER_URL", "\"http://54.194.163.47:9080\""
     }
     dataBinding {
         enabled = true

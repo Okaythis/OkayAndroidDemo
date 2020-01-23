@@ -22,6 +22,6 @@ class OkayDemoApplication: Application() {
 
 
     private fun initGatewayServer() {
-        GatewayRestServer.init(PsaGsonFactory().create(), BuildConfig.SERVER_URL + "/gateway/")
+//        GatewayRestServer.init(PsaGsonFactory().create(), BuildConfig.SERVER_URL + "/gateway/")
     }
 }
