@@ -5,8 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-//ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgyacF1NNWTA6rzCrtK60se9fVpTPe3HiDjHB7MybJvNdJZIgZbE9k3gQ6cdEYgTOSG823hkJCVHZrcf0/AK7G8Xf/rjhWxccOEXFTg4TQwmhbwys+sY/DmGR8nytlNVbha1DV/qOGcqAkmn9SrqW76KK+EdQFpbiOzw7RRWZuizwY3BqRfQRokr0UBJrJrizbT9ZxiVqGBwUDBQrSpsj3RUuoj90py1E88ExyaHui+jbXNITaPBUFJjbas5OOnSLVz6GrBPOD+x0HozAoYuBdoztPRxpjoNIYvgJ72wZ3kOAVPAFb48UROL7sqK2P/jwhdd02p/MDBZpMl/+BG+qQIDAQAB'
-//ext.installationId = '9990'
 ext.installationId = '10000'
 ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA494A0mHzkciBS0xsMCH9ZTp9SF/pwczKaXSSOfxghpSYzkcJktjozIwYn5MYN/tU5zHuPz1eN++K7bszsCGX5IMQSVrlL4aTIpF5kH9EM9eXmV4t+YfHoJLLs7eJuc4OckGyyHjMaTlvItRH3FPbwJtonCbxIIP9UqXUEeDB8Ltr2jHtnCgaf8A829uWf7Vy5rtj572YH45RTGdFDstdPSorgZ/GWMKBoevBUE4tRh7z/yVAFrooebPcMFOP5VUQwqnxM1GjUO6eARnL5QSu5DfMn9GrE+BwzKcMcxDgVwuKwyStmaSFTg0AVwUT/y0C3uAR6dex0wFuHS61gcZvMwIDAQAB'
 android {
@@ -51,7 +49,7 @@ android {
         testImplementation 'junit:junit:4.12'
         androidTestImplementation 'androidx.test:runner:1.2.0'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-        implementation 'com.okaythis.sdk:psa:1.1.0'
+        implementation 'com.okaythis.sdk:psa:1.2.0'
         implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
         // androidx
