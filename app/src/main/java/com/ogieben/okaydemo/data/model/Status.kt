@@ -1,3 +1,3 @@
 package com.ogieben.okaydemo.data.model
 
-data class Status(val code: Integer, val message: String)
+data class Status(val code: Int, val message: String)

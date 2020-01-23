@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         fetchInstanceId()
         handleIntent(intent)
 
-        enrollmentButton.setOnClickListener { view ->
+        enrollmentButton.setOnClickListener {
             beginEnrollment()
         }
 
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
            }
 
            override fun onResponse(call: Call<OkayLinking>, response: Response<OkayLinking>) {
-               linkUser(response?.body()!!.linkingCode)
+               linkUser(response.body()!!.linkingCode)
            }
 
        })
