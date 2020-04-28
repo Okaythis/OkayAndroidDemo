@@ -21,7 +21,9 @@ allprojects {
         google()
         jcenter()
         maven {
-            url 'https://dl.bintray.com/okaythis/maven'
+//            url 'https://dl.bintray.com/okaythis/maven_ben'
+            url 'https://dl.bintray.com/okaythis/maven_e'
+//            url 'https://dl.bintray.com/okaythis/maven'
         }
     }
 }
