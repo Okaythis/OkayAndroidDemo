@@ -26,6 +26,7 @@ import com.protectoria.psa.dex.common.data.enums.PsaType
 import com.ogieben.okaydemo.fcm.OkayDemoFirebaseMessagingService
 import com.ogieben.okaydemo.ui.theme.BaseTheme
 import com.protectoria.psa.api.entities.SpaAuthorizationData
+import com.protectoria.psa.dex.design.DefaultPageTheme
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -181,8 +182,8 @@ class MainActivity : AppCompatActivity() {
     private fun startAuthorization(sessionId: Long) {
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
             preferenceRepo.appPNS,
-            BaseTheme(this).DEFAULT_PAGE_THEME,
-            PsaType.OKAY))
+            DefaultPageTheme.getDefaultPageTheme(this),
+            PsaType.BASE))
     }
 
     private fun startServerAuthorization(userExternalId: String?) {
