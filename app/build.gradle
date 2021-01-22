@@ -9,12 +9,12 @@ ext.pubPssB64 = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgyacF1NNWTA6rzCrtK
 ext.installationId = '9990'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.ogieben.okaydemo"
-        minSdkVersion 24
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -50,7 +50,7 @@ android {
         testImplementation 'junit:junit:4.12'
         androidTestImplementation 'androidx.test:runner:1.2.0'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-        implementation 'com.okaythis.sdk:psa:1.1.0'
+        implementation 'com.okaythis.sdk:psa:1.5.0'
         implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
         // androidx
