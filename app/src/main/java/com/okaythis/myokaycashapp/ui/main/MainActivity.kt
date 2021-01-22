@@ -1,30 +1,32 @@
-package com.ogieben.okaydemo.ui.main
+package com.okaythis.myokaycashapp.ui.main
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.itransition.protectoria.psa_multitenant.protocol.scenarios.linking.LinkingScenarioListener
 import com.itransition.protectoria.psa_multitenant.state.ApplicationState
-import com.ogieben.okaydemo.data.model.AuthorizationResponse
-import com.ogieben.okaydemo.data.model.OkayLinking
-import com.ogieben.okaydemo.data.repository.PreferenceRepo
-import com.ogieben.okaydemo.network.retrofit.RetrofitWrapper
-import com.ogieben.okaydemo.utils.PermissionHelper
 import com.protectoria.psa.PsaManager
 import com.protectoria.psa.api.PsaConstants
 import com.protectoria.psa.api.converters.PsaIntentUtils
 import com.protectoria.psa.api.entities.SpaEnrollData
 import com.protectoria.psa.dex.common.data.enums.PsaType
-import com.ogieben.okaydemo.fcm.OkayDemoFirebaseMessagingService
-import com.ogieben.okaydemo.ui.theme.BaseTheme
 import com.okaythis.myokaycashapp.BuildConfig
 import com.okaythis.myokaycashapp.R
+import com.okaythis.myokaycashapp.data.model.AuthorizationResponse
+import com.okaythis.myokaycashapp.data.model.OkayLinking
+import com.okaythis.myokaycashapp.data.repository.PreferenceRepo
+import com.okaythis.myokaycashapp.fcm.OkayDemoFirebaseMessagingService
+import com.okaythis.myokaycashapp.retrofit.RetrofitWrapper
+import com.okaythis.myokaycashapp.ui.theme.BaseTheme
+import com.okaythis.myokaycashapp.utils.PermissionHelper
 import com.protectoria.psa.api.entities.SpaAuthorizationData
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun handleIntent(intent: Intent?) {
         intent?.apply {
             val sessionId =  getLongExtra(OkayDemoFirebaseMessagingService.ACTIVITY_WAKE_UP_KEY, 0)
@@ -178,6 +181,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun startAuthorization(sessionId: Long) {
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
             preferenceRepo.appPNS,

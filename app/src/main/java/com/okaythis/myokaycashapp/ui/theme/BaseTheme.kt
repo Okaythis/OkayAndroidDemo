@@ -1,4 +1,4 @@
-package com.ogieben.okaydemo.ui.theme
+package com.okaythis.myokaycashapp.ui.theme
 
 import android.content.Context
 import android.graphics.Color

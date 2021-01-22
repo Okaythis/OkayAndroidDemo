@@ -1,10 +1,8 @@
-package com.ogieben.okaydemo.fcm
+package com.okaythis.myokaycashapp.fcm
 
-import android.util.Log
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.okaythis.myokaycashapp.BuildConfig.DEBUG
-import java.lang.Exception
 
 class NotificationHandler {
 

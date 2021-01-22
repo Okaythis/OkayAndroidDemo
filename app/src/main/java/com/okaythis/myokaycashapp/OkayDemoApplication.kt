@@ -1,9 +1,8 @@
-package com.ogieben.okaydemo
+package com.okaythis.myokaycashapp
 
 import android.app.Application
 import com.itransition.protectoria.psa_multitenant.restapi.GatewayRestServer
 import com.ogieben.okaydemo.logger.OkayDemoLogger
-import com.okaythis.myokaycashapp.BuildConfig
 import com.okaythis.okaythis_flutter_plugin.resourceprovider.DefaultResourceProvider
 import com.protectoria.psa.PsaManager
 import com.protectoria.psa.dex.common.data.json.PsaGsonFactory
