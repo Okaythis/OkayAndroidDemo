@@ -28,6 +28,7 @@ import com.okaythis.myokaycashapp.retrofit.RetrofitWrapper
 import com.okaythis.myokaycashapp.ui.theme.BaseTheme
 import com.okaythis.myokaycashapp.utils.PermissionHelper
 import com.protectoria.psa.api.entities.SpaAuthorizationData
+import com.protectoria.psa.api.entities.TenantInfoData
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -41,7 +42,9 @@ class MainActivity : AppCompatActivity() {
     private val permissionHelper = PermissionHelper(this)
     private val retrofitWrapper = RetrofitWrapper()
     private val transactionHandler =  retrofitWrapper.handleTransactionEndpoints()
+    private val userExternalID = "replaceWithYouUserExternalId2"
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,12 +61,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         linkingButton.setOnClickListener{
-
-            startServerLinking(preferenceRepo.externalId)
+            startServerLinking(userExternalID)
         }
 
         authorizeButton.setOnClickListener {
-            startServerAuthorization(preferenceRepo.externalId)
+            startServerAuthorization(userExternalID)
         }
 
         manualLinkButton.setOnClickListener{
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         pinAuthorizationButton.setOnClickListener{
-            startOTPTansaction(preferenceRepo.externalId)
+            startPinAuthorization(userExternalID)
         }
 
     }
@@ -186,7 +188,8 @@ class MainActivity : AppCompatActivity() {
         PsaManager.startAuthorizationActivity(this, SpaAuthorizationData(sessionId,
             preferenceRepo.appPNS,
             BaseTheme(this).DEFAULT_PAGE_THEME,
-            PsaType.OKAY))
+            PsaType.OKAY, TenantInfoData("Okay AS", "")
+        ))
     }
 
     private fun startServerAuthorization(userExternalId: String?) {
@@ -220,8 +223,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun startOTPTansaction(userExternalId: String?) {
-        transactionHandler.authorizeOTPTransaction(userExternalId).enqueue(object: Callback<AuthorizationResponse> {
+    private fun startPinAuthorization(userExternalId: String?) {
+        transactionHandler.authorizePinTransaction(userExternalId).enqueue(object: Callback<AuthorizationResponse> {
             override fun onFailure(call: Call<AuthorizationResponse>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error making request to Server", Toast.LENGTH_LONG).show()
             }

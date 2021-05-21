@@ -16,5 +16,5 @@ interface TransactionEndpoints {
     fun authorizeTransaction(@Query("userExternalId") userExternalId: String?): Call<AuthorizationResponse>
 
     @POST("/auth/pin")
-    fun authorizeOTPTransaction(@Query("userExternalId") userExternalId: String?): Call<AuthorizationResponse>
+    fun authorizePinTransaction(@Query("userExternalId") userExternalId: String?): Call<AuthorizationResponse>
 }

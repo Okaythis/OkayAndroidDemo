@@ -30,7 +30,7 @@ class BaseTheme(context: Context) {
 
                 titleTextColor = it.getColor(R.color.primaryTextColor)
                 questionMarkColor = it.getColor(R.color.primaryLightColor)
-                transactionTypeTextColor = it.getColor(R.color.primaryTextColor)
+                transactionTypeTextColor = it.getColor(R.color.black)
 
                 authInfoBackgroundColor = it.getColor(R.color.transaction_info_background)
                 infoSectionTitleColor = it.getColor(R.color.secondaryLightColor)
